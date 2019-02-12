@@ -14,7 +14,7 @@ pipeline {
     stage('Build & Run') {
       steps {
           sh "pub run example/lib/main.dart"
-          telegramSend 'Ran build'
+          telegramSend 'Ran another build for "NominatimAPI"'
       }
     }
   }

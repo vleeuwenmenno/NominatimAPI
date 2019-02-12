@@ -1,5 +1,5 @@
 # Nominatim API
-//TODO: ADD TRAVIS CI
+[![Build Status](https://ci.vleeuwen.me/buildStatus/icon?job=NominatimAPI/master)](https://ci.vleeuwen.me/job/NominatimAPI/job/master/)
 
 Nominatim api for the open source geocoder for openstreetmap data that works in Dart/Flutter
 

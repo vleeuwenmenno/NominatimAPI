@@ -19,6 +19,9 @@ class Address
 		this.state
 	});
 
+    /// Finds a address using [query] and returns it as typeof[Address]
+    ///
+    /// [list] is the list we are searching though
     static Address findAddress(String query, List<Address> list)
     {
         for(Address a in list)
@@ -30,6 +33,7 @@ class Address
         return null;
     }
 
+    /// Takes [list] and converts it to a list of string addresses as [List<String>]
     static List<String> toListString(List<Address> list)
     {
         List<String> l = [];

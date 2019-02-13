@@ -16,6 +16,8 @@ class NominatimAPI
 
     final bool allowInsecure;
 
+    final Duration cooldown;
+
     //Public vars
 
     /// Private vars
@@ -26,11 +28,12 @@ class NominatimAPI
     /// Constructor
     ///
     /// [host] is the host for requesting resolvers to
+    /// [cooldown] is optional and is used to prevent overflowing the server with requests
     /// [allowInsecure] enables you to resolve to non-https hosts (Not recommended)
-	NominatimAPI({this.host = "https://nominatim.openstreetmap.org", this.allowInsecure = false})
+	NominatimAPI({this.host = "https://nominatim.openstreetmap.org", this.allowInsecure = false, this.cooldown = const Duration(seconds: 1)})
 	{
         /// Set the initial last request to 1 second ago as that's the default cooldown time
-		_lastRequest = DateTime.now().subtract(new Duration(milliseconds: 1000));
+		_lastRequest = DateTime.now().subtract(this.cooldown);
 	}
 
     /// Resolve a [query] to the [host] specified in this class
@@ -38,9 +41,8 @@ class NominatimAPI
     /// Returns List of addresses if successful (If not returns [null])
     ///
     /// [query] defines the address we are looking for
-    /// [cooldown] is optional and is used to prevent overflowing the server with requests
     /// [verbose] is for outputting debug data
- 	Future<List<Address>> resolve({String query, Duration cooldown = const Duration(seconds: 1), bool verbose = false}) async
+ 	Future<List<Address>> resolve({String query, bool verbose = false}) async
 	{
         /// Check if we are running this request securely
         if (!host.startsWith("https://") && !allowInsecure)

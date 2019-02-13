@@ -30,7 +30,7 @@ class Address
         return null;
     }
 
-    static List<String> toListString(String query, List<Address> list)
+    static List<String> toListString(List<Address> list)
     {
         List<String> l = [];
         for(Address a in list)
